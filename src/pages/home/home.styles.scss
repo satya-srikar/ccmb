@@ -1,0 +1,23 @@
+.home-page {
+  width: 100vw;
+  height: calc(100vh - 6rem);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &--logo {
+    width: 20rem;
+    margin: 0 auto 3rem auto;
+  }
+
+  &--heading {
+    width: 50rem;
+    height: fit-content;
+    font-size: 3rem;
+    color: white;
+    font-weight: 100;
+    margin: 0 auto;
+    text-align: center;
+  }
+}

@@ -1,0 +1,21 @@
+.login-page {
+  width: 100vw;
+  height: calc(100vh - 6rem);
+  display: flex;
+  justify-content: center;
+
+  form {
+    height: fit-content;
+    padding: 5rem;
+    margin: auto;
+    background-color: #212641;
+    border-radius: 1rem;
+    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.5);
+    display: grid;
+    grid-gap: 3rem;
+
+    .submit-btn {
+      margin-left: auto;
+    }
+  }
+}

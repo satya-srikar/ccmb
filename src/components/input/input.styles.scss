@@ -1,0 +1,35 @@
+.input-container {
+  width: 100%;
+  display: grid;
+  grid-gap: 1rem;
+  //   margin: 2rem;
+
+  .label {
+    width: fit-content;
+    font-size: 2rem;
+    color: white;
+  }
+
+  .error-label {
+    color: red;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    border: none;
+    background-color: lightgray;
+    padding: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    outline: none;
+    font-size: 1.5rem;
+    resize: vertical;
+  }
+
+  .error-msg {
+    color: red;
+    width: 100%;
+    font-size: 1.2rem;
+  }
+}

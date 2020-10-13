@@ -1,0 +1,40 @@
+.btn {
+  height: fit-content;
+  width: fit-content;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.8rem;
+  padding: 1rem 2rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  background-position: center;
+  transition: box-shadow 0.5s;
+  transition: background 0.8s;
+  background: white radial-gradient(circle, transparent 1%, white 1%)
+    center/15000%;
+  font-size: 1.5rem;
+
+  &:active {
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: 100%;
+    box-shadow: 0 1px 2.5px rgba(0, 0, 0, 0.3);
+    transition: none;
+  }
+}
+
+.btn-primary {
+  background: #212641 radial-gradient(circle, transparent 1%, #212641 1%)
+    center/15000%;
+  color: white;
+}
+
+.btn-safe {
+  background: seagreen radial-gradient(circle, transparent 1%, seagreen 1%)
+    center/15000%;
+  color: white;
+}
+
+.btn-danger {
+  background: red radial-gradient(circle, transparent 1%, red 1%) center/15000%;
+  color: white;
+}
