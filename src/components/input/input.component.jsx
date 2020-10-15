@@ -1,18 +1,19 @@
 import React from 'react';
+import SelectComponent from '../select/select.component';
 
 import './input.styles.scss';
 
-const InputComponent = ({ label, name, placeholder, value, onChange, required, type, error = false }) => {
+const InputComponent = ({ label, name, placeholder = "", value = "", searchVal = "", onChange, required = false, type = "text", error = false, selectData, labelPos = "default", onSelectSearch, onSelect }) => {
     return (
-        <div className="input-container">
-            <div className={`label ${error ? 'error-label' : ''}`}><label>{label}</label></div>
+        <div className={`${labelPos === 'default' ? 'input-container' : 'input-container-side-label'}`}>
+            <div className={`label ${error ? 'error-label' : ''}`}><label>{label + ` ${required ? '* ' : ' '}`}:</label></div>
             {
-                type !== 'textbox' ?
+                type === 'textbox' ?
                 <>
                     {
                         required ?
-                        <input
-                            placeholder={`${placeholder}*`}
+                        <textarea
+                            placeholder={`${placeholder}`}
                             value={value}
                             onChange={onChange}
                             name={name}
@@ -20,7 +21,7 @@ const InputComponent = ({ label, name, placeholder, value, onChange, required, t
                             type={type}
                         />
                         :
-                        <input
+                        <textarea
                             placeholder={placeholder}
                             value={value}
                             onChange={onChange}
@@ -30,11 +31,25 @@ const InputComponent = ({ label, name, placeholder, value, onChange, required, t
                     }
                 </>
                 :
+                type === 'select' ?
+                <>
+                    <SelectComponent
+                        name={name}
+                        placeholder={placeholder}
+                        required={required}
+                        value={value}
+                        searchVal={searchVal}
+                        data={selectData}
+                        onSearch={onSelectSearch}
+                        onSelect={onSelect}
+                    />
+                </>
+                :
                 <>
                     {
                         required ?
-                        <textarea
-                            placeholder={`${placeholder}*`}
+                        <input
+                            placeholder={`${placeholder}`}
                             value={value}
                             onChange={onChange}
                             name={name}
@@ -42,7 +57,7 @@ const InputComponent = ({ label, name, placeholder, value, onChange, required, t
                             type={type}
                         />
                         :
-                        <textarea
+                        <input
                             placeholder={placeholder}
                             value={value}
                             onChange={onChange}

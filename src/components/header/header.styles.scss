@@ -5,6 +5,9 @@
   justify-content: space-between;
   background-color: #212641;
   height: 6rem;
+  position: fixed;
+  top: 0;
+  z-index: 1;
 
   .header-link {
     color: white;
@@ -13,9 +16,12 @@
   }
 
   .header-content {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-    width: 40rem;
+    display: grid;
+    grid-template-columns: max-content max-content max-content;
+    grid-gap: 5rem;
   }
+}
+
+.header-shadow {
+  box-shadow: 0 5px 10px black;
 }

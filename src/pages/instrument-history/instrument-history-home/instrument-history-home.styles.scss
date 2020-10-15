@@ -1,16 +1,15 @@
-.instrument-history-page {
+.instrument-history-home-page {
   width: 100%;
   height: calc(100vh - 6rem);
+  margin-top: 6rem;
   display: flex;
 
-  .options {
+  &--options {
     width: 100%;
     display: grid;
     grid-template-columns: auto auto auto;
-    // grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    // grid-gap: 1rem;
 
-    .option {
+    &--option {
       color: white;
       border: 1px solid white;
       display: flex;
@@ -39,6 +38,17 @@
           }
         }
       }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .instrument-history-home-page {
+    &--options {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-gap: 1rem;
     }
   }
 }

@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box !important;
   color: inherit;
+  outline: none;
 }
 
 html {
@@ -10,12 +11,11 @@ html {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
+  color: inherit !important;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
   margin: 0;
   padding: 0;
   background-color: #15192a;
@@ -26,4 +26,36 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #212641;
+  border-radius: 10px;
+
+  // &:hover
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+@media (max-width: 800px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 40%;
+  }
 }

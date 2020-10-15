@@ -7,9 +7,9 @@ const ButtonComponent = ({ type = 'default', submit = false, onClick, children }
         <>
         {
             submit ?
-            <button onClick={onClick} type="submit" className={`btn btn-${type}`}>{ children }</button>
+            <button onClick={onClick} type="submit" className={`button button-${type}`}>{ children }</button>
             :
-            <button onClick={onClick} className={`btn btn-${type}`}>{ children }</button>
+            <button onClick={onClick} type="button" className={`button button-${type}`}>{ children }</button>
         }
         </>
     );

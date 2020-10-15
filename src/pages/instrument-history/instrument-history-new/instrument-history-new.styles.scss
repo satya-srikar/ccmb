@@ -1,0 +1,34 @@
+.instrument-history-new {
+  margin: auto;
+  margin-top: 6rem;
+  padding: 2rem;
+  // height: calc(100vh - 6rem);
+  // overflow-y: auto;
+
+  form {
+    .form-fields {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+      grid-gap: 5rem;
+    }
+
+    button {
+      min-width: 50%;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .instrument-history-new {
+    padding: 2rem 0 !important;
+
+    form {
+      .form-fields {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-gap: 5rem;
+        padding: 0 1rem;
+      }
+    }
+  }
+}

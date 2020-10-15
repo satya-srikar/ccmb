@@ -1,0 +1,40 @@
+.pagination-component {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-size: 3rem;
+  font-weight: bolder;
+  margin-top: 1rem;
+
+  .first-page,
+  .prev-page,
+  .next-page,
+  .last-page {
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    transition: box-shadow 0.2s;
+    padding: 1rem;
+
+    &:hover {
+      background-color: white;
+      color: #212641;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+      box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .disabled {
+    cursor: default;
+    color: lightgray;
+
+    &:hover {
+      background-color: transparent !important;
+      color: lightgray;
+      box-shadow: none !important;
+    }
+  }
+}

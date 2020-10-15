@@ -15,7 +15,8 @@
   }
 
   input,
-  textarea {
+  textarea,
+  select {
     width: 100%;
     border: none;
     background-color: lightgray;
@@ -23,13 +24,70 @@
     border: none;
     border-radius: 1rem;
     outline: none;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin: auto 0;
+  }
+
+  textarea {
     resize: vertical;
+    min-height: 10rem;
   }
 
   .error-msg {
     color: red;
     width: 100%;
     font-size: 1.2rem;
+  }
+}
+
+.input-container-side-label {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20rem auto;
+
+  .label {
+    width: fit-content;
+    height: fit-content;
+    font-size: 2rem;
+    color: white;
+    margin: auto 2rem auto 0;
+  }
+
+  .error-label {
+    color: red;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    border: none;
+    background-color: lightgray;
+    padding: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    outline: none;
+    font-size: 2rem;
+    margin: auto 0;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 10rem;
+  }
+
+  .error-msg {
+    color: red;
+    width: 100%;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .input-container,
+  .input-container-side-label {
+    input[type="date"] {
+      width: 100%;
+    }
   }
 }
