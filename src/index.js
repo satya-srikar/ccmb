@@ -8,7 +8,6 @@ import { store, persistor } from './redux/store';
 import App from './app.component';
 import * as serviceWorker from './serviceWorker';
 
-import "bootstrap/dist/css/bootstrap.min.css";
 import './index.scss';
 
 ReactDOM.render(

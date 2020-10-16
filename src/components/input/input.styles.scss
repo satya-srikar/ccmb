@@ -17,6 +17,7 @@
   input,
   textarea,
   select {
+    min-width: 200px;
     width: 100%;
     border: none;
     background-color: lightgray;
@@ -24,13 +25,19 @@
     border: none;
     border-radius: 1rem;
     outline: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: auto 0;
+  }
+
+  input[type="date"] {
+    max-width: 22rem;
   }
 
   textarea {
     resize: vertical;
     min-height: 10rem;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
   }
 
   .error-msg {
@@ -60,6 +67,7 @@
   input,
   textarea,
   select {
+    min-width: 200px;
     width: 100%;
     border: none;
     background-color: lightgray;
@@ -67,13 +75,19 @@
     border: none;
     border-radius: 1rem;
     outline: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: auto 0;
+  }
+
+  input[type="date"] {
+    max-width: 22rem;
   }
 
   textarea {
     resize: vertical;
-    min-height: 10rem;
+    min-height: 20rem;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
   }
 
   .error-msg {
@@ -86,8 +100,11 @@
 @media (max-width: 500px) {
   .input-container,
   .input-container-side-label {
-    input[type="date"] {
-      width: 100%;
+    input,
+    textarea,
+    select {
+      min-width: 0 !important;
+      max-width: 100% !important;
     }
   }
 }

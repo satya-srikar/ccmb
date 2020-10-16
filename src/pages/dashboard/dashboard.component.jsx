@@ -10,7 +10,7 @@ const DashboardPage = () => {
                 <Link to="/instrument-history">Instrument History</Link>
                 <div className="underline"></div>
             </h1>
-            <hr />
+            <div className="divider" />
             <h1>
                 <Link to="/return-test-report">Return Test Report</Link>
                 <div className="underline"></div>

@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box !important;
   color: inherit;
-  outline: none;
+  outline: none !important;
 }
 
 html {
@@ -36,8 +36,8 @@ code {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #212641;
-  border-radius: 10px;
+  background: gray;
+  // border-radius: 10px;
 
   // &:hover
 }

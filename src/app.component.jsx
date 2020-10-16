@@ -16,55 +16,57 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <HeaderComponent />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
+        <HeaderComponent/>
+        <div id="scrollable_content" className="main-content">
+          <Switch>
+            <Route exact path="/" component={HomePage} />
 
-          <Route path="/login"
-            render={() =>
-              this.props.currentUser ?
-              <Redirect to="/" />
-              :
-              <LoginPage />
-            }
-          />
-          
-          <Route path="/dashboard"
-            render={() =>
-              this.props.currentUser ?
-              <DashboardPage />
-              :
-              <Redirect to="/login" />
-            }
-          />
+            <Route path="/login"
+              render={() =>
+                this.props.currentUser ?
+                <Redirect to="/" />
+                :
+                <LoginPage />
+              }
+            />
+            
+            <Route path="/dashboard"
+              render={() =>
+                this.props.currentUser ?
+                <DashboardPage />
+                :
+                <Redirect to="/login" />
+              }
+            />
 
-          <Route path="/instrument-history/read-or-edit"
-            render={() => 
-              this.props.currentUser ? 
-              <InstrumentHistoryReadEditPage />
-              :
-              <Redirect to="/login" />
-            }
-          />
+            <Route path="/instrument-history/read-or-edit"
+              render={() => 
+                this.props.currentUser ? 
+                <InstrumentHistoryReadEditPage />
+                :
+                <Redirect to="/login" />
+              }
+            />
 
-          <Route path="/instrument-history/new"
-            render={() => 
-              this.props.currentUser ? 
-              <InstrumentHistoryNewPage />
-              :
-              <Redirect to="/login" />
-            }
-          />
+            <Route path="/instrument-history/new"
+              render={() => 
+                this.props.currentUser ? 
+                <InstrumentHistoryNewPage />
+                :
+                <Redirect to="/login" />
+              }
+            />
 
-          <Route exact path="/instrument-history"
-            render={() => 
-              this.props.currentUser ? 
-              <InstrumentHistoryHomePage />
-              :
-              <Redirect to="/login" />
-            }
-          />
-        </Switch>
+            <Route exact path="/instrument-history"
+              render={() => 
+                this.props.currentUser ? 
+                <InstrumentHistoryHomePage />
+                :
+                <Redirect to="/login" />
+              }
+            />
+          </Switch>
+        </div>
       </div>
     );
   }

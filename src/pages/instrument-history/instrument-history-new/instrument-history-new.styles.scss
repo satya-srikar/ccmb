@@ -1,34 +1,67 @@
 .instrument-history-new {
   margin: auto;
-  margin-top: 6rem;
-  padding: 2rem;
-  // height: calc(100vh - 6rem);
-  // overflow-y: auto;
+  // padding: 3rem 0;
+  width: 100vw;
 
   form {
-    .form-fields {
+    width: 100vw;
+    .container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
-      grid-gap: 5rem;
+      grid-gap: 2rem;
+      padding: 0;
+      margin: 5rem auto;
     }
 
     button {
       min-width: 50%;
+      margin: 0 auto;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .label {
+        width: fit-content;
+        font-size: 2rem;
+        color: white;
+      }
+
+      .table {
+        color: white;
+        width: 100%;
+        min-width: fit-content;
+
+        th {
+          font-size: 2rem;
+          font-weight: 100;
+        }
+
+        td {
+          font-size: 1.5rem;
+          color: black;
+        }
+
+        th,
+        td {
+          min-width: 100px;
+          max-width: fit-content;
+          text-align: center;
+        }
+      }
     }
   }
 }
 
 @media (max-width: 500px) {
   .instrument-history-new {
-    padding: 2rem 0 !important;
+    padding: 2rem 1rem !important;
 
-    form {
-      .form-fields {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        grid-gap: 5rem;
-        padding: 0 1rem;
-      }
+    .container {
+      max-width: 100% !important;
     }
   }
 }

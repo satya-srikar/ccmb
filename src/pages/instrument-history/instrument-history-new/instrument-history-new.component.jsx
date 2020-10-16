@@ -25,6 +25,9 @@ class InstrumentHistoryNewPage extends React.Component {
             orderDate: { value: '', error: false },
             invoiceNo: { value: '', error: false },
             invoiceDate: { value: '', error: false },
+            listOfItems: [
+                { id: 1, sNo: '', partNo: '',  description: '', qty: '', unitPrice: '', cost: '' },
+            ]
         }
     }
 
@@ -60,15 +63,36 @@ class InstrumentHistoryNewPage extends React.Component {
     }
 
     onSelect = (name, value) => {
-        console.log(name, value)
-        console.log(this.state);
-        this.setState({ [name]: { searchVal: value, value: value, error: false } }, () => console.log(this.state));
+        this.setState({ [name]: { searchVal: value, value: value, error: false } });
     }
 
     onFormValueChange = (event) => {
         const { name, value } = event.target;
         this.setState({ [name]: { value: value, error: false } });
-        console.log(value);
+    }
+
+    onAddColumns = (tableName) => {
+        if (tableName === 'listOfItems') {
+            let { listOfItems } = this.state;
+            const id = listOfItems[listOfItems.length - 1].id;
+            listOfItems.push({ id: id + 1, sNo: '', partNo: '',  description: '', qty: '', unitPrice: '', cost: '' });
+            this.setState({ listOfItems });
+        }
+    }
+
+    onTableChange = (tableName, id, event) => {
+        const { name, value } = event.target;
+        // console.log(tableName, id, name, value);
+        let tableData = this.state[tableName];
+        if(tableData){
+            tableData = tableData.map(item => {
+                if (item.id === id) {
+                    item[name] = value;
+                }
+                return item;
+            });
+        }
+        this.setState({ [tableName]: tableData });
     }
 
     render() {
@@ -89,12 +113,13 @@ class InstrumentHistoryNewPage extends React.Component {
             orderDate,
             invoiceNo,
             invoiceDate,
+            listOfItems,
         } = this.state;
 
         return(
             <div className="instrument-history-new">
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-fields">
+                    <div className="container">
                         <InputComponent
                             type="select"
                             selectData={classificationData}
@@ -249,8 +274,84 @@ class InstrumentHistoryNewPage extends React.Component {
                             error={invoiceDate.error}
                         />
                     </div>
+                    <div className="container">
+                        <div className="table-container">
+                            <div className={`label`}><label>List of Items Ordered (Exactly as per our Order) :</label></div>
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Part No.</th>
+                                        <th>Description</th>
+                                        <th>Qty</th>
+                                        <th>Unit Price</th>
+                                        <th>Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        listOfItems.map((item, index) => {
+                                            return (
+                                                <tr key={item.id}>
+                                                    <td>
+                                                        <input
+                                                            value={item.sNo}
+                                                            name="sNo"
+                                                            onChange={(event) => this.onTableChange('listOfItems', item.id, event)}
+                                                            style={{width: '5rem', textAlign: 'center'}}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            value={item.partNo}
+                                                            name="partNo"
+                                                            onChange={(event) => this.onTableChange('listOfItems', item.id, event)}
+                                                            style={{width: '5rem', textAlign: 'center'}}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            value={item.description}
+                                                            name="description"
+                                                            onChange={(event) => this.onTableChange('listOfItems', item.id, event)}
+                                                            style={{width: '60rem', padding: '0 2rem'}}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            value={item.qty}
+                                                            name="qty"
+                                                            onChange={(event) => this.onTableChange('listOfItems', item.id, event)}
+                                                            style={{width: '5rem', textAlign: 'center'}}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            value={item.unitPrice}
+                                                            name="unitPrice"
+                                                            onChange={(event) => this.onTableChange('listOfItems', item.id, event)}
+                                                            style={{width: '5rem', textAlign: 'center'}}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            value={item.cost}
+                                                            name="cost"
+                                                            onChange={(event) => this.onTableChange('listOfItems', item.id, event)}
+                                                            style={{width: '5rem', textAlign: 'center'}}
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                            <ButtonComponent onClick={() => this.onAddColumns('listOfItems')}>Add row</ButtonComponent>
+                        </div>
+                    </div>
                 </form>
-            </div>
+                </div>
         )
     }
 }

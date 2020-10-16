@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -7,22 +7,8 @@ import { setCurrentUser } from '../../redux/user/user.actions';
 import './header.styles.scss';
 
 const HeaderComponent = ({ currentUser, setCurrentUser }) => {
-    const [scrolled, setScrolled] = useState(true);
-    
-    const scrollEvent = useCallback((e) => {
-        if(window.scrollY > 0)
-            setScrolled(true);
-        else
-            setScrolled(false);
-    }, []);
-    useEffect(() => {
-        window.addEventListener('scroll', scrollEvent);
-
-        return () => window.removeEventListener('scroll', scrollEvent);
-    }, [scrollEvent])
-    
     return (
-        <header className={`header ${scrolled > 0 ? 'header-shadow' : ''}`}>
+        <header className={`header`}>
             <div className="header-link"><Link to="/">Home</Link></div>
             <div className="header-content">
                 {

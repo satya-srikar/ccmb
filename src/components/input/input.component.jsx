@@ -3,9 +3,9 @@ import SelectComponent from '../select/select.component';
 
 import './input.styles.scss';
 
-const InputComponent = ({ label, name, placeholder = "", value = "", searchVal = "", onChange, required = false, type = "text", error = false, selectData, labelPos = "default", onSelectSearch, onSelect }) => {
+const InputComponent = ({ label, name, placeholder = "", value = "", searchVal = "", onChange, required = false, type = "text", error = false, selectData, labelPos = "default", onSelectSearch, onSelect, className }) => {
     return (
-        <div className={`${labelPos === 'default' ? 'input-container' : 'input-container-side-label'}`}>
+        <div className={`${labelPos === 'default' ? 'input-container' : 'input-container-side-label'} ${className}`}>
             <div className={`label ${error ? 'error-label' : ''}`}><label>{label + ` ${required ? '* ' : ' '}`}:</label></div>
             {
                 type === 'textbox' ?
