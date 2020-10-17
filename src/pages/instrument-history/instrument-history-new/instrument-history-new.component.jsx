@@ -156,7 +156,7 @@ class InstrumentHistoryNewPage extends React.Component {
   onSelectSearch = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: { searchVal: value, value: this.state[name].value, error: false },
+      [name]: { searchVal: value, value: value, error: false },
     });
   };
 
@@ -675,7 +675,9 @@ class InstrumentHistoryNewPage extends React.Component {
             />
           </div>
           <div className="container flex-box">
-            <ButtonComponent type="danger">Clear All</ButtonComponent>
+            <ButtonComponent onClick={this.onClearAll} type="danger">
+              Clear All
+            </ButtonComponent>
             <ButtonComponent type="safe" submit={true}>
               Save
             </ButtonComponent>
