@@ -4,8 +4,12 @@
   margin: auto 0;
 
   .select-input {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
     input {
-      width: 100%;
+      width: 90%;
       border: none;
       background-color: lightgray;
       padding: 1.5rem;
@@ -14,6 +18,27 @@
       outline: none;
       font-size: 2rem;
     }
+
+    .icon {
+      width: 7rem;
+      height: 7rem;
+      font-size: 5rem;
+      color: white;
+      background-color: #15192a;
+      transition: all 0.5s;
+      display: flex;
+      cursor: pointer;
+      border-radius: 1rem;
+
+      svg {
+        margin: auto;
+      }
+
+      &:hover {
+        background-color: white;
+        color: #15192a;
+      }
+    }
   }
 
   // .select-options {
@@ -21,7 +46,7 @@
   // }
 
   .select-options {
-    width: 100%;
+    width: 90%;
     max-height: 12rem;
     overflow-y: auto;
     display: inherit !important;

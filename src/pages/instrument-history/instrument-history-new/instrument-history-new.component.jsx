@@ -20,6 +20,7 @@ class InstrumentHistoryNewPage extends React.Component {
         error: false,
       },
       fileNo: { value: "", error: false },
+      fileDate: { value: "", error: false },
       dateOfReceipt: { value: "", error: false },
       cost: { value: "", error: false },
       shortTechnicalDescription: { value: "", error: false },
@@ -28,8 +29,6 @@ class InstrumentHistoryNewPage extends React.Component {
       manufacturer: { value: "", error: false },
       agents: { value: "", error: false },
       indentors: { searchVal: "", value: "", error: false },
-      orderNo: { value: "", error: false },
-      orderDate: { value: "", error: false },
       invoiceNo: { value: "", error: false },
       invoiceDate: { value: "", error: false },
       listOfItems: [
@@ -46,6 +45,23 @@ class InstrumentHistoryNewPage extends React.Component {
       currency: { searchVal: "", value: "", error: false },
       exchangeRate: { value: "", error: false },
       totalCost: { value: "", error: false },
+      issues: [
+        {
+          id: 1,
+          sNo: "",
+          description: "",
+          slNo: "",
+          qty: "",
+          issuedTo: "",
+          date: "",
+        },
+      ],
+      installedAt: { searchVal: "", value: "", error: false },
+      sparesAt: { value: "", error: false },
+      warranty: { value: "", error: false },
+      projectOrGrant: { value: "", error: false },
+      remarks: { value: "", error: false },
+      testedBy: { value: "", error: false },
     };
   }
 
@@ -76,6 +92,65 @@ class InstrumentHistoryNewPage extends React.Component {
       dateOfTestingError &&
       fileNoError;
     if (!formHasError) console.log(this.state);
+  };
+
+  onClearAll = () => {
+    this.setState({
+      classification: { searchVal: "", value: "", error: false },
+      testReportNo: { value: "", error: false },
+      dateOfTesting: {
+        value: `${new Date().getFullYear()}-${
+          new Date().getMonth() < 9
+            ? "0" + (new Date().getMonth() + 1)
+            : new Date().getMonth() + 1
+        }-${new Date().getDate()}`,
+        error: false,
+      },
+      fileNo: { value: "", error: false },
+      dateOfReceipt: { value: "", error: false },
+      cost: { value: "", error: false },
+      shortTechnicalDescription: { value: "", error: false },
+      modelOrType: { value: "", error: false },
+      serialNo: { value: "", error: false },
+      manufacturer: { value: "", error: false },
+      agents: { value: "", error: false },
+      indentors: { searchVal: "", value: "", error: false },
+      orderNo: { value: "", error: false },
+      orderDate: { value: "", error: false },
+      invoiceNo: { value: "", error: false },
+      invoiceDate: { value: "", error: false },
+      listOfItems: [
+        {
+          id: 1,
+          sNo: "",
+          partNo: "",
+          description: "",
+          qty: "",
+          unitPrice: "",
+          cost: "",
+        },
+      ],
+      currency: { searchVal: "", value: "", error: false },
+      exchangeRate: { value: "", error: false },
+      totalCost: { value: "", error: false },
+      issues: [
+        {
+          id: 1,
+          sNo: "",
+          description: "",
+          slNo: "",
+          qty: "",
+          issuedTo: "",
+          date: "",
+        },
+      ],
+      installedAt: { searchVal: "", value: "", error: false },
+      sparesAt: { value: "", error: false },
+      warranty: { value: "", error: false },
+      projectOrGrant: { value: "", error: false },
+      remarks: { value: "", error: false },
+      testedBy: { value: "", error: false },
+    });
   };
 
   onSelectSearch = (event) => {
@@ -109,6 +184,20 @@ class InstrumentHistoryNewPage extends React.Component {
       });
       this.setState({ listOfItems });
     }
+    if (tableName === "issues") {
+      let { issues } = this.state;
+      const id = issues[issues.length - 1].id;
+      issues.push({
+        id: id + 1,
+        sNo: "",
+        description: "",
+        slNo: "",
+        qty: "",
+        issuedTo: "",
+        date: "",
+      });
+      this.setState({ issues });
+    }
   };
 
   onTableChange = (tableName, id, event) => {
@@ -132,6 +221,7 @@ class InstrumentHistoryNewPage extends React.Component {
       testReportNo,
       dateOfTesting,
       fileNo,
+      fileDate,
       dateOfReceipt,
       cost,
       shortTechnicalDescription,
@@ -140,14 +230,19 @@ class InstrumentHistoryNewPage extends React.Component {
       manufacturer,
       agents,
       indentors,
-      orderNo,
-      orderDate,
       invoiceNo,
       invoiceDate,
       listOfItems,
       currency,
       exchangeRate,
       totalCost,
+      issues,
+      installedAt,
+      sparesAt,
+      warranty,
+      projectOrGrant,
+      remarks,
+      testedBy,
     } = this.state;
 
     return (
@@ -193,6 +288,15 @@ class InstrumentHistoryNewPage extends React.Component {
               labelPos="side"
               onChange={this.onFormValueChange}
               error={fileNo.error}
+            />
+            <InputComponent
+              type="date"
+              name="fileDate"
+              value={fileDate.value}
+              label="File Date."
+              labelPos="side"
+              onChange={this.onFormValueChange}
+              error={fileDate.error}
             />
             <InputComponent
               type="date"
@@ -248,9 +352,7 @@ class InstrumentHistoryNewPage extends React.Component {
               onChange={this.onFormValueChange}
               error={manufacturer.error}
             />
-            <ButtonComponent submit={true} onClick={this.onSubmit}>
-              Address
-            </ButtonComponent>
+            <ButtonComponent>Address</ButtonComponent>
             <InputComponent
               type="text"
               name="agents"
@@ -272,24 +374,6 @@ class InstrumentHistoryNewPage extends React.Component {
               onSelectSearch={this.onSelectSearch}
               onSelect={this.onSelect}
               error={indentors.error}
-            />
-            <InputComponent
-              type="text"
-              name="orderNo"
-              value={orderNo.value}
-              label="Order No."
-              labelPos="side"
-              onChange={this.onFormValueChange}
-              error={orderNo.error}
-            />
-            <InputComponent
-              type="date"
-              name="orderDate"
-              value={orderDate.value}
-              label="Order Date."
-              labelPos="side"
-              onChange={this.onFormValueChange}
-              error={orderDate.error}
             />
             <InputComponent
               type="text"
@@ -438,23 +522,21 @@ class InstrumentHistoryNewPage extends React.Component {
           <div className="container">
             <div className="table-container">
               <div className={`label`}>
-                <label>
-                  List of Items Ordered (Exactly as per our Order) :
-                </label>
+                <label>Issues :</label>
               </div>
               <table className="table">
                 <thead>
                   <tr>
                     <th>S.No.</th>
-                    <th>Part No.</th>
                     <th>Description</th>
+                    <th>Slip No/SL No.</th>
                     <th>Qty</th>
-                    <th>Unit Price</th>
-                    <th>Cost</th>
+                    <th>Issued to</th>
+                    <th>Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {listOfItems.map((item, index) => {
+                  {issues.map((item, index) => {
                     return (
                       <tr key={item.id}>
                         <td>
@@ -462,17 +544,7 @@ class InstrumentHistoryNewPage extends React.Component {
                             value={item.sNo}
                             name="sNo"
                             onChange={(event) =>
-                              this.onTableChange("listOfItems", item.id, event)
-                            }
-                            style={{ width: "5rem", textAlign: "center" }}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            value={item.partNo}
-                            name="partNo"
-                            onChange={(event) =>
-                              this.onTableChange("listOfItems", item.id, event)
+                              this.onTableChange("issues", item.id, event)
                             }
                             style={{ width: "5rem", textAlign: "center" }}
                           />
@@ -482,9 +554,19 @@ class InstrumentHistoryNewPage extends React.Component {
                             value={item.description}
                             name="description"
                             onChange={(event) =>
-                              this.onTableChange("listOfItems", item.id, event)
+                              this.onTableChange("issues", item.id, event)
                             }
-                            style={{ width: "60rem", padding: "0 2rem" }}
+                            style={{ width: "30rem", padding: "0 2rem" }}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            value={item.slNo}
+                            name="slNo."
+                            onChange={(event) =>
+                              this.onTableChange("issues", item.id, event)
+                            }
+                            style={{ width: "15rem", textAlign: "center" }}
                           />
                         </td>
                         <td>
@@ -492,29 +574,30 @@ class InstrumentHistoryNewPage extends React.Component {
                             value={item.qty}
                             name="qty"
                             onChange={(event) =>
-                              this.onTableChange("listOfItems", item.id, event)
+                              this.onTableChange("issues", item.id, event)
                             }
                             style={{ width: "5rem", textAlign: "center" }}
                           />
                         </td>
                         <td>
                           <input
-                            value={item.unitPrice}
-                            name="unitPrice"
+                            value={item.issuedTo}
+                            name="issuedTo"
                             onChange={(event) =>
-                              this.onTableChange("listOfItems", item.id, event)
+                              this.onTableChange("issues", item.id, event)
                             }
-                            style={{ width: "5rem", textAlign: "center" }}
+                            style={{ width: "20rem", textAlign: "center" }}
                           />
                         </td>
                         <td>
                           <input
-                            value={item.cost}
-                            name="cost"
+                            value={item.date}
+                            name="date"
+                            type="date"
                             onChange={(event) =>
-                              this.onTableChange("listOfItems", item.id, event)
+                              this.onTableChange("issues", item.id, event)
                             }
-                            style={{ width: "5rem", textAlign: "center" }}
+                            style={{ width: "15rem", textAlign: "center" }}
                           />
                         </td>
                       </tr>
@@ -522,10 +605,80 @@ class InstrumentHistoryNewPage extends React.Component {
                   })}
                 </tbody>
               </table>
-              <ButtonComponent onClick={() => this.onAddColumns("listOfItems")}>
+              <ButtonComponent onClick={() => this.onAddColumns("issues")}>
                 Add row
               </ButtonComponent>
             </div>
+          </div>
+          <div className="container">
+            <InputComponent
+              type="select"
+              selectData={classificationData}
+              name="installedAt"
+              value={installedAt.value}
+              searchVal={installedAt.searchVal}
+              label="Installed at"
+              labelPos="side"
+              onChange={this.onFormValueChange}
+              onSelectSearch={this.onSelectSearch}
+              onSelect={this.onSelect}
+              error={installedAt.error}
+            />
+            <InputComponent
+              type="text"
+              name="sparesAt"
+              value={sparesAt.value}
+              label="Spares kept at"
+              labelPos="side"
+              onChange={this.onFormValueChange}
+              error={sparesAt.error}
+            />
+            <InputComponent
+              type="text"
+              name="warranty"
+              value={warranty.value}
+              label="Warranty"
+              labelPos="side"
+              onChange={this.onFormValueChange}
+              error={warranty.error}
+            />
+            <InputComponent
+              type="text"
+              name="projectOrGrant"
+              value={projectOrGrant.value}
+              label="Project/Grant"
+              labelPos="side"
+              onChange={this.onFormValueChange}
+              error={projectOrGrant.error}
+            />
+            <InputComponent
+              type="textbox"
+              name="remarks"
+              value={remarks.value}
+              label="Remarks"
+              labelPos="side"
+              onChange={this.onFormValueChange}
+              error={remarks.error}
+            />
+            <InputComponent
+              type="select"
+              selectData={classificationData}
+              name="testedBy"
+              value={testedBy.value}
+              searchVal={testedBy.searchVal}
+              label="Tested by"
+              labelPos="side"
+              onChange={this.onFormValueChange}
+              onSelectSearch={this.onSelectSearch}
+              onSelect={this.onSelect}
+              error={testedBy.error}
+            />
+          </div>
+          <div className="container flex-box">
+            <ButtonComponent type="danger">Clear All</ButtonComponent>
+            <ButtonComponent type="safe" submit={true}>
+              Save
+            </ButtonComponent>
           </div>
         </form>
       </div>

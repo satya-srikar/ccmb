@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ChevronDown, ChevronUp } from "react-feather";
 
 import "./select.styles.scss";
 
@@ -22,15 +23,7 @@ const SelectComponent = ({
     : data;
   filteredData = focus ? filteredData : [];
   return (
-    <div
-      className="select-component"
-      onFocus={() => setFocus(true)}
-      onBlur={() =>
-        setTimeout(() => {
-          if (focus) setFocus(false);
-        }, 200)
-      }
-    >
+    <div className="select-component">
       <div className="select-input">
         {required ? (
           <input
@@ -39,10 +32,7 @@ const SelectComponent = ({
             value={searchVal}
             placeholder={`${placeholder}`}
             required
-            onChange={(e) => {
-              if (!focus) setFocus(true);
-              onSearch(e);
-            }}
+            onChange={onSearch}
           />
         ) : (
           <input
@@ -50,12 +40,15 @@ const SelectComponent = ({
             name={name}
             value={searchVal}
             placeholder={placeholder}
-            onChange={(e) => {
-              if (!focus) setFocus(true);
-              onSearch(e);
-            }}
+            onChange={onSearch}
           />
         )}
+        <div
+          onClick={() => setFocus(!focus)}
+          className={`icon ${focus ? "closed-icon" : "open-icon"}`}
+        >
+          {focus ? <ChevronUp size={30} /> : <ChevronDown size={30} />}
+        </div>
       </div>
       <div className={`select-options`}>
         {filteredData &&
