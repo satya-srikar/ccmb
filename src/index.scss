@@ -18,9 +18,18 @@ a {
 body {
   margin: 0;
   padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   background-color: #15192a;
   font-family: "Roboto", sans-serif;
   // color: white;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 code {

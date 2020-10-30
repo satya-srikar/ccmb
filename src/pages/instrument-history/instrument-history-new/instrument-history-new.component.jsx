@@ -681,6 +681,7 @@ class InstrumentHistoryNewPage extends React.Component {
             <ButtonComponent type="safe" submit={true}>
               Save
             </ButtonComponent>
+            <ButtonComponent type="primary">Show Test Report</ButtonComponent>
           </div>
         </form>
       </div>

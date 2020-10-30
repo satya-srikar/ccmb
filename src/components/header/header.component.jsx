@@ -9,7 +9,7 @@ import "./header.styles.scss";
 const HeaderComponent = ({ currentUser, setCurrentUser }) => {
   return (
     <header className={`header`}>
-      <div className="header-link">
+      <div style={{ marginLeft: "1rem" }} className="header-link">
         <Link to="/">Home</Link>
       </div>
       <div className="header-content">

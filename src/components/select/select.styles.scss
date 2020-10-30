@@ -25,18 +25,18 @@
       font-size: 5rem;
       color: white;
       background-color: #15192a;
-      transition: all 0.5s;
+      transition: all 10s;
       display: flex;
       cursor: pointer;
       border-radius: 1rem;
+      // box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
 
       svg {
         margin: auto;
       }
 
-      &:hover {
-        background-color: white;
-        color: #15192a;
+      &:active {
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
       }
     }
   }
