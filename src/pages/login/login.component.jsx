@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
+import { TextField, Button } from "@material-ui/core";
+import Particles from "react-particles-js";
 
-import ButtonComponent from "../../components/button/button.component";
-import InputComponent from "../../components/input/input.component";
+import ccmbLogo from "../../images/ccmb-logo.png";
+import nightSky from "../../images/night-sky.jpg";
 import { setCurrentUser } from "../../redux/user/user.actions";
 
 import "./login.styles.scss";
@@ -13,7 +15,8 @@ class LoginPage extends React.Component {
     super();
 
     this.state = {
-      username: {
+      emailRegx: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      email: {
         value: "",
         error: false,
       },
@@ -32,13 +35,15 @@ class LoginPage extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    const usernameErr = this.state.username.value === "";
+    const emailErr =
+      this.state.email.value === "" ||
+      !this.state.emailRegx.test(this.state.email.value);
     const passwordErr = this.state.password.value === "";
 
-    if (usernameErr)
+    if (emailErr)
       this.setState({
-        username: {
-          value: "",
+        email: {
+          value: this.state.email.value,
           error: true,
         },
       });
@@ -46,72 +51,95 @@ class LoginPage extends React.Component {
     if (passwordErr)
       this.setState({
         password: {
-          value: "",
+          value: this.state.password.value,
           error: true,
         },
       });
 
-    if (!usernameErr && !passwordErr) {
+    if (!emailErr && !passwordErr) {
       this.setState({ isAuth: true });
       this.props.setCurrentUser({
         id: 1234567890,
-        username: this.state.username.value,
+        email: this.state.email.value,
         password: this.state.password.value,
+        admin: true,
       });
     }
   };
 
-  onUsernameChange = (event) =>
+  onEmailChange = (event) => {
     this.setState({
-      username: {
+      email: {
         value: event.target.value,
         error: false,
       },
     });
+  };
 
   onPasswordChange = (event) =>
     this.setState({
       password: {
-        value: event.target.value,
+        value: event.target.value.trim(),
         error: false,
       },
     });
 
   render() {
     return (
-      <div className="login-page">
+      <div
+        className="login-page"
+        style={{
+          backgroundImage: `url(${nightSky})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
+        <Particles
+          params={{
+            particles: {
+              number: {
+                value: 100,
+              },
+              size: {
+                value: 3,
+              },
+            },
+            interactivity: {
+              events: {
+                onhover: {
+                  enable: true,
+                  mode: "repulse",
+                },
+              },
+            },
+          }}
+        />
         {!this.state.isAuth ? (
-          <form onSubmit={this.onSubmit}>
-            <div className="form-field">
-              <InputComponent
-                placeholder="Username"
-                name="username"
-                value={this.state.username.value}
-                label="Username"
-                onChange={this.onUsernameChange}
-                required={true}
-                type="text"
-                error={this.state.username.error}
-              />
-            </div>
+          <form onSubmit={this.onSubmit} noValidate>
+            <img src={ccmbLogo} alt="CCMB Logo" />
+            <TextField
+              label="Email"
+              variant="outlined"
+              value={this.state.email.value}
+              error={this.state.email.error}
+              onChange={this.onEmailChange}
+              required
+            />
 
-            <div className="form-field">
-              <InputComponent
-                placeholder="Password"
-                name="password"
-                value={this.state.password.value}
-                label="Password"
-                onChange={this.onPasswordChange}
-                required={true}
-                type="password"
-                error={this.state.password.error}
-              />
-            </div>
-            <div className="submit-btn">
-              <ButtonComponent submit={true} onClick={this.onSubmit}>
-                Login
-              </ButtonComponent>
-            </div>
+            <TextField
+              label="Password"
+              variant="outlined"
+              value={this.state.password.value}
+              error={this.state.password.error}
+              onChange={this.onPasswordChange}
+              type="password"
+              required
+            />
+
+            <Button type="submit" variant="contained" color="primary">
+              Login
+            </Button>
           </form>
         ) : (
           <Redirect to="/" />

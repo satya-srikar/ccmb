@@ -1,13 +1,9 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box !important;
+  box-sizing: border-box;
   color: inherit;
   outline: none !important;
-}
-
-html {
-  font-size: 62.5%;
 }
 
 a {
@@ -23,7 +19,7 @@ body {
   overflow: hidden;
   background-color: #15192a;
   font-family: "Roboto", sans-serif;
-  // color: white;
+  color: white;
 }
 
 #root {
@@ -35,36 +31,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 1rem;
-  height: 1rem;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: gray;
-  // border-radius: 10px;
-
-  // &:hover
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  width: 10px !important;
-  height: 10px !important;
-}
-
-@media (max-width: 800px) {
-  html {
-    font-size: 50%;
-  }
-}
-
-@media (max-width: 500px) {
-  html {
-    font-size: 40%;
-  }
 }

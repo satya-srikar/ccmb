@@ -13,9 +13,6 @@
   .error-label {
     color: red;
   }
-
-  input,
-  textarea,
   select {
     min-width: 200px;
     width: 90%;
@@ -27,17 +24,6 @@
     outline: none;
     font-size: 1.5rem;
     margin: auto 0;
-  }
-
-  input[type="date"] {
-    max-width: 22rem;
-  }
-
-  textarea {
-    resize: vertical;
-    min-height: 10rem;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
   }
 
   .error-msg {
@@ -63,9 +49,6 @@
   .error-label {
     color: red;
   }
-
-  input,
-  textarea,
   select {
     min-width: 200px;
     width: 90%;
@@ -77,17 +60,6 @@
     outline: none;
     font-size: 1.5rem;
     margin: auto 0;
-  }
-
-  input[type="date"] {
-    max-width: 22rem;
-  }
-
-  textarea {
-    resize: vertical;
-    min-height: 20rem;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
   }
 
   .error-msg {

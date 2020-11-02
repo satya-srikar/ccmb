@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "@material-ui/core";
 import ButtonComponent from "../../../components/button/button.component";
 import InputComponent from "../../../components/input/input.component";
 import { classificationData } from "./instrument-history-new.service";
@@ -166,6 +167,7 @@ class InstrumentHistoryNewPage extends React.Component {
 
   onFormValueChange = (event) => {
     const { name, value } = event.target;
+    console.log(name, value);
     this.setState({ [name]: { value: value, error: false } });
   };
 
@@ -246,10 +248,11 @@ class InstrumentHistoryNewPage extends React.Component {
     } = this.state;
 
     return (
-      <div className="instrument-history-new">
+      <div className="instrument-history-new container">
         <form onSubmit={this.onSubmit}>
-          <div className="container">
+          <div className="row">
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="select"
               selectData={classificationData}
               name="classification"
@@ -263,6 +266,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={classification.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="number"
               name="testReportNo"
               value={testReportNo.value}
@@ -272,6 +276,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={testReportNo.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="date"
               name="dateOfTesting"
               value={dateOfTesting.value}
@@ -281,6 +286,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={dateOfTesting.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="fileNo"
               value={fileNo.value}
@@ -290,6 +296,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={fileNo.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="date"
               name="fileDate"
               value={fileDate.value}
@@ -299,6 +306,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={fileDate.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="date"
               name="dateOfReceipt"
               value={dateOfReceipt.value}
@@ -308,6 +316,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={dateOfReceipt.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="cost"
               value={cost.value}
@@ -317,6 +326,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={cost.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="textbox"
               name="shortTechnicalDescription"
               value={shortTechnicalDescription.value}
@@ -326,6 +336,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={shortTechnicalDescription.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="modelOrType"
               value={modelOrType.value}
@@ -335,6 +346,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={modelOrType.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="serialNo"
               value={serialNo.value}
@@ -344,6 +356,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={serialNo.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="manufacturer"
               value={manufacturer.value}
@@ -354,6 +367,7 @@ class InstrumentHistoryNewPage extends React.Component {
             />
             <ButtonComponent>Address</ButtonComponent>
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="agents"
               value={agents.value}
@@ -363,6 +377,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={agents.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="select"
               selectData={classificationData}
               name="indentors"
@@ -376,6 +391,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={indentors.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="invoiceNo"
               value={invoiceNo.value}
@@ -385,6 +401,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={invoiceNo.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="date"
               name="invoiceDate"
               value={invoiceDate.value}
@@ -394,7 +411,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={invoiceDate.error}
             />
           </div>
-          <div className="container">
+          <div>
             <div className="table-container">
               <div className={`label`}>
                 <label>
@@ -481,13 +498,17 @@ class InstrumentHistoryNewPage extends React.Component {
                   })}
                 </tbody>
               </table>
-              <ButtonComponent onClick={() => this.onAddColumns("listOfItems")}>
+              <ButtonComponent
+                className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
+                onClick={() => this.onAddColumns("listOfItems")}
+              >
                 Add row
               </ButtonComponent>
             </div>
           </div>
-          <div className="container">
+          <div className="row">
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="select"
               selectData={classificationData}
               name="currency"
@@ -501,6 +522,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={currency.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="exchangeRate"
               value={exchangeRate.value}
@@ -510,6 +532,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={exchangeRate.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="totalCost"
               value={totalCost.value}
@@ -519,7 +542,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={totalCost.error}
             />
           </div>
-          <div className="container">
+          <div>
             <div className="table-container">
               <div className={`label`}>
                 <label>Issues :</label>
@@ -610,8 +633,9 @@ class InstrumentHistoryNewPage extends React.Component {
               </ButtonComponent>
             </div>
           </div>
-          <div className="container">
+          <div className="row">
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="select"
               selectData={classificationData}
               name="installedAt"
@@ -625,6 +649,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={installedAt.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="sparesAt"
               value={sparesAt.value}
@@ -634,6 +659,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={sparesAt.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="warranty"
               value={warranty.value}
@@ -643,6 +669,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={warranty.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="text"
               name="projectOrGrant"
               value={projectOrGrant.value}
@@ -652,6 +679,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={projectOrGrant.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="textbox"
               name="remarks"
               value={remarks.value}
@@ -661,6 +689,7 @@ class InstrumentHistoryNewPage extends React.Component {
               error={remarks.error}
             />
             <InputComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
               type="select"
               selectData={classificationData}
               name="testedBy"
@@ -674,14 +703,27 @@ class InstrumentHistoryNewPage extends React.Component {
               error={testedBy.error}
             />
           </div>
-          <div className="container flex-box">
-            <ButtonComponent onClick={this.onClearAll} type="danger">
+          <div className="row" style={{ margin: "10rem 0" }}>
+            <ButtonComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
+              onClick={this.onClearAll}
+              btnType="danger"
+            >
               Clear All
             </ButtonComponent>
-            <ButtonComponent type="safe" submit={true}>
+            <ButtonComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
+              btnType="safe"
+              type="submit"
+            >
               Save
             </ButtonComponent>
-            <ButtonComponent type="primary">Show Test Report</ButtonComponent>
+            <ButtonComponent
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 py-3"
+              btnType="primary"
+            >
+              Show Test Report
+            </ButtonComponent>
           </div>
         </form>
       </div>

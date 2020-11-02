@@ -1,21 +1,28 @@
 .login-page {
-  width: 100vw;
   height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
+  // background-color: #000000;
+
+  #tsparticles {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+  }
 
   form {
-    height: fit-content;
-    padding: 5rem;
     margin: auto;
-    background-color: #212641;
-    border-radius: 1rem;
-    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.5);
     display: grid;
-    grid-gap: 3rem;
+    grid-gap: 30px;
+    padding: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    background-color: #15192a;
+    z-index: 2;
 
-    .submit-btn {
-      margin-left: auto;
+    img {
+      margin: auto;
     }
   }
 }
