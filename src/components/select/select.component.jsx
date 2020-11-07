@@ -93,24 +93,6 @@ const SelectComponent = ({
           />
         </FormControl>
       </div>
-      {/* <div className={`select-options`}>
-        {filteredData &&
-          filteredData.map((option, index) => {
-            return (
-              <div
-                onClick={(e) => {
-                  e.preventDefault();
-                  onSelect(name, option.label);
-                  setFocus(false);
-                }}
-                key={index}
-                className="select-option"
-              >
-                <Typography>{option.label}</Typography>
-              </div>
-            );
-          })}
-      </div> */}
       <List
         className={clsx(classes.list, { [classes.hide]: !filteredData.length })}
       >
@@ -125,22 +107,3 @@ const SelectComponent = ({
 };
 
 export default SelectComponent;
-
-// {required ? (
-//   <input
-//     type="text"
-//     name={name}
-//     value={searchVal}
-//     placeholder={`${placeholder}`}
-//     required
-//     onChange={onSearch}
-//   />
-// ) : (
-//   <input
-//     type="text"
-//     name={name}
-//     value={searchVal}
-//     placeholder={placeholder}
-//     onChange={onSearch}
-//   />
-// )}

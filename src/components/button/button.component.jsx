@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  createMuiTheme,
-  withStyles,
-  makeStyles,
-  ThemeProvider,
-} from "@material-ui/core/styles";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green, red } from "@material-ui/core/colors";
 
@@ -102,20 +97,3 @@ const ButtonComponent = ({
 };
 
 export default ButtonComponent;
-//   {submit ? (
-//     <button
-//       onClick={onClick}
-//       type="submit"
-//       className={`button button-${type}`}
-//     >
-//       {children}
-//     </button>
-//   ) : (
-//     <button
-//       onClick={onClick}
-//       type="button"
-//       className={`button button-${type}`}
-//     >
-//       {children}
-//     </button>
-//   )}

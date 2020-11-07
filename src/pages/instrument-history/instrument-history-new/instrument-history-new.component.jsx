@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@material-ui/core";
 import ButtonComponent from "../../../components/button/button.component";
 import InputComponent from "../../../components/input/input.component";
 import { classificationData } from "./instrument-history-new.service";
@@ -204,7 +203,6 @@ class InstrumentHistoryNewPage extends React.Component {
 
   onTableChange = (tableName, id, event) => {
     const { name, value } = event.target;
-    // console.log(tableName, id, name, value);
     let tableData = this.state[tableName];
     if (tableData) {
       tableData = tableData.map((item) => {

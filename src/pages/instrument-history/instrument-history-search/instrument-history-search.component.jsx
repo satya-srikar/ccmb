@@ -3,9 +3,9 @@ import React from "react";
 import InputComponent from "../../../components/input/input.component";
 import PaginationComponent from "../../../components/pagination/pagination.component";
 
-import "./instrument-history-read-edit.styles.scss";
+import "./instrument-history-search.styles.scss";
 
-class InstrumentHistoryReadEditPage extends React.Component {
+class InstrumentHistorySearchPage extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -68,4 +68,4 @@ class InstrumentHistoryReadEditPage extends React.Component {
   }
 }
 
-export default InstrumentHistoryReadEditPage;
+export default InstrumentHistorySearchPage;

@@ -7,7 +7,7 @@ import HomePage from "./pages/home/home.component";
 import LoginPage from "./pages/login/login.component";
 import DashboardPage from "./pages/dashboard/dashboard.component";
 import InstrumentHistoryHomePage from "./pages/instrument-history/instrument-history-home/instrument-history-home.component";
-import InstrumentHistoryReadEditPage from "./pages/instrument-history/instrument-history-read-edit/instrument-history-read-edit.component";
+import InstrumentHistorySearchPage from "./pages/instrument-history/instrument-history-search/instrument-history-search.component";
 import InstrumentHistoryNewPage from "./pages/instrument-history/instrument-history-new/instrument-history-new.component";
 import CreateUser from "./pages/create-user/create-user.component";
 
@@ -41,10 +41,10 @@ const App = ({ currentUser }) => {
             />
 
             <Route
-              path="/instrument-history/read-or-edit"
+              path="/instrument-history/search"
               render={() =>
                 currentUser ? (
-                  <InstrumentHistoryReadEditPage />
+                  <InstrumentHistorySearchPage />
                 ) : (
                   <Redirect to="/login" />
                 )

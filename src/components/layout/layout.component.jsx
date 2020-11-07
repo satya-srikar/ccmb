@@ -1,13 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Drawer,
   List,
-  Divider,
   CssBaseline,
-  IconButton,
   ListItem,
   ListItemIcon,
   ListItemText,
@@ -15,15 +13,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  AppBar,
-  Toolbar,
-  Button,
 } from "@material-ui/core";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import MenuIcon from "@material-ui/icons/Menu";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import HeaderComponent from "../header/header.component";
@@ -73,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
     border: "none !important",
+    marginTop: "64px",
+    height: "calc(100vh - 64px)",
   },
   drawerHeader: {
     display: "flex",
@@ -84,7 +76,6 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    // padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -108,14 +99,21 @@ const useStyles = makeStyles((theme) => ({
     width: `calc(100vw - ${drawerWidth})`,
     marginLeft: 0,
   },
+  link: {
+    "&:hover": {
+      backgroundColor: "#5967b5",
+    },
+  },
+  activeLink: {
+    backgroundColor: "#3f51b5",
+  },
 }));
 
-export default function LayoutComponent({ children }) {
+const LayoutComponent = (props) => {
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
-
+  console.log(props);
   window.onresize = () => {
     setWindowSize(window.innerWidth);
     if (window.innerWidth < 600) {
@@ -132,9 +130,7 @@ export default function LayoutComponent({ children }) {
       <CssBaseline />
       <HeaderComponent
         openDrawer={handleDrawerOpen}
-        className={clsx(classes.appBar, {
-          // [classes.appBarShift]: open && windowSize > 600,
-        })}
+        className={clsx(classes.appBar, {})}
       />
       <Drawer
         className={classes.drawer}
@@ -146,22 +142,6 @@ export default function LayoutComponent({ children }) {
         }}
         onClose={handleDrawerOpen}
       >
-        <AppBar position="sticky">
-          <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-              onClick={handleDrawerOpen}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}>
-              <Link to="/">Home</Link>
-            </Typography>
-          </Toolbar>
-        </AppBar>
         <div className={classes.accordianRoot}>
           <Accordion>
             <AccordionSummary
@@ -169,16 +149,35 @@ export default function LayoutComponent({ children }) {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography className={classes.heading}>Accordion 1</Typography>
+              <Typography className={classes.heading}>
+                Instrument History
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <List>
-                <ListItem button>
-                  <ListItemText>Read/Edit</ListItemText>
-                </ListItem>
-                <ListItem button>
-                  <ListItemText>New Report</ListItemText>
-                </ListItem>
+                <Link to="/instrument-history/search">
+                  <ListItem
+                    button
+                    className={clsx(classes.link, {
+                      [classes.activeLink]:
+                        props.location.pathname ===
+                        "/instrument-history/search",
+                    })}
+                  >
+                    <ListItemText>Search</ListItemText>
+                  </ListItem>
+                </Link>
+                <Link to="/instrument-history/new">
+                  <ListItem
+                    button
+                    className={clsx(classes.link, {
+                      [classes.activeLink]:
+                        props.location.pathname === "/instrument-history/new",
+                    })}
+                  >
+                    <ListItemText>New Report</ListItemText>
+                  </ListItem>
+                </Link>
               </List>
             </AccordionDetails>
           </Accordion>
@@ -199,16 +198,6 @@ export default function LayoutComponent({ children }) {
             </AccordionDetails>
           </Accordion>
         </div>
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -217,8 +206,10 @@ export default function LayoutComponent({ children }) {
           [classes.contentMobileWidth]: windowSize <= 600,
         })}
       >
-        {children}
+        {props.children}
       </main>
     </div>
   );
-}
+};
+
+export default withRouter(LayoutComponent);
